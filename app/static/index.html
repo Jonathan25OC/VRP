@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Optimizador de Rutas VRP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2em;
+            background-color: #f4f4f4;
+        }
+        #map-container {
+            width: 100%;
+            height: 600px;
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Optimizador de Rutas VRP</h1>
+    <p>Pega el JSON de entrada con coordenadas, pedidos y almacén:</p>
+    <textarea id="json-input">
+{
+  "coord": {
+    "EDO.MEX": [19.2938, -99.6536],
+    "QRO": [20.5935, -100.3900],
+    "CDMX": [19.4328, -99.1333],
+    "SLP": [22.1517, -100.9765],
+    "MTY": [25.6731, -100.2974],
+    "PUE": [19.0635, -98.3072],
+    "GDL": [20.6771, -103.3469],
+    "MICH": [19.7026, -101.1922],
+    "SON": [29.0752, -110.9596]
+  },
+  "pedidos": {
+    "EDO.MEX": 10,
+    "QRO": 13,
+    "CDMX": 7,
+    "SLP": 11,
+    "MTY": 15,
+    "PUE": 8,
+    "GDL": 6,
+    "MICH": 7,
+    "SON": 8
+  },
+  "almacen": [19.4328, -99.1333],
+  "max_carga": 40
+}
+    </textarea><br>
+    <button onclick="verMapa()">Ver Mapa</button>
+    <div id="map-container"></div>
+
+    <script>
+        async function verMapa() {
+            const input = document.getElementById("json-input").value;
+            const response = await fetch("http://127.0.0.1:8000/mapa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: input
+            });
+            const html = await response.text();
+            document.getElementById("map-container").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

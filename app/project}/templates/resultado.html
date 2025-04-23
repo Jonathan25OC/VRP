@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Rutas Optimizadas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #eef6fb;
+            color: #003366;
+            padding: 20px;
+        }
+        h1 {
+            color: #004080;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #3399cc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #3399cc;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #e6f2f8;
+        }
+        tr:hover {
+            background-color: #d0e7f3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #006699;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rutas Calculadas</h1>
+    <table>
+        <tr>
+            <th>Ruta</th>
+            <th>Distancia total (km)</th>
+            <th>Consumo de gasolina (l)</th>
+        </tr>
+        {% for r in rutas %}
+        <tr>
+            <td>{{ r.ruta }}</td>
+            <td>{{ r.distancia_total }}</td>
+            <td>{{ r.consumo_gasolina }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">&#8592; Volver al formulario</a>
+</body>
+</html>
